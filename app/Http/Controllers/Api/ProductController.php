@@ -9,16 +9,16 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         return ProductResource::collection(Product::all());
-       /*  $products = ProductResource::collection(Product::all());
+        /*  $products = ProductResource::collection(Product::all());
         return view('welcome', ['products' => $products]); */
     }
-  
-    public function show()
-    {
-        /* $product = Product::whereSlug($slug)->firstOrFail();
-        return new ProductResource($product); */
 
+    public function show($id)
+    {
+        $product = Product::where('id', $id)->firstOrFail();
+        return new ProductResource($product);
     }
 }
